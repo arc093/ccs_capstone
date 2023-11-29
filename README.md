@@ -17,6 +17,9 @@
       2. seach add remote
       3. paste repository url
 
+     also cool video about git/github cause its confusing: https://www.youtube.com/watch?v=wpISo9TNjfU
+   
+
 
 5. Set up vscode with arduino: https://maker.pro/arduino/tutorial/how-to-use-visual-studio-code-for-arduino
 
