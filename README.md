@@ -13,11 +13,9 @@
 
    -Add remote repository
    
-      -open command pallete in vscode
-   
-      -seach add remote
-   
-      -paste repository url
+      1. open command pallete in vscode
+      2. seach add remote
+      3. paste repository url
 
 
 5. Set up vscode with arduino: https://maker.pro/arduino/tutorial/how-to-use-visual-studio-code-for-arduino
