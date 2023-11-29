@@ -12,8 +12,11 @@
    ![image](https://github.com/arc093/ccs_capstone/assets/152421805/8c2f1bc8-b8f2-47e2-9d33-765a27c29df0)
 
    -Add remote repository
+   
       -open command pallete in vscode
+   
       -seach add remote
+   
       -paste repository url
 
 
