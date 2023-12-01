@@ -39,7 +39,7 @@ void loop() {
   //print the pot values to get the correct range for the map function
   Serial.print(analogRead(durPotPin));
   //Serial.print(analogRead(speedPotPin));
-  durationPar = map(analogRead(durPotPin), 0, 1023, 1, 5);
+  durationPar = map(analogRead(durPotPin), 0, 1023, 0.1, 5);
   speedPar = map(analogRead(speedPotPin), 0, 1023, 1, 5);
 
   curTime = millis() - startTime;
