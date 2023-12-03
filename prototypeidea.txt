@@ -1,0 +1,15 @@
+loop{
+
+
+if button is pressed
+
+    while timer  < timer_duration
+        check speed pot
+        check duration pot
+        turn on led
+        update timer variable
+    turn off led
+    set timer = 0
+
+
+}
