@@ -24,18 +24,16 @@ void setup() {
 }
 
 void loop() {
-  //readStates();
+  readStates();
   //janky way to read buttonStates for 1 and remember location of the 1
   int currentDirection = 5;
-  // for (int i=0; i<4 ; i++){
-  //   if (1 == buttonStates[i]){
-  //     currentDirection=i;
-  //     break;
-  //   }
-  // }
-  buttonStates[0] = digitalRead(buttonPins[0]);
-  Serial.print("buttonStates: "); Serial.print(buttonStates[0]);//for (int i = 0; i<4; i++){Serial.println(buttonStates[i]);};
-  // Serial.print("currentDirection: "); Serial.println(currentDirection);
+  for (int i=0; i<4 ; i++){
+    if (1 == buttonStates[i]){
+      currentDirection=i;
+      break;
+    }
+  }
+  Serial.print("currentDirection: "); Serial.println(currentDirection);
   //if we found that a button is pressed
   // if (currentDirection != 5){
   //   Serial.print("Button pressed: "); Serial.println(currentDirection);
@@ -79,11 +77,10 @@ void loop() {
 void readStates() {
   durationPar = map(analogRead(durPotPin), 0, 1023, 0, 5000);
   speedPar = map(analogRead(speedPotPin), 0, 1023, minSpeed, maxSpeed);
-  buttonStates[0] = digitalRead(buttonPins[0]);
-  // for (int i = 0; i<4; i++){
-  //   buttonStates[i] = digitalRead(buttonPins[i]);
-  // }
-  // Serial.print("Reading States; durationPar:"); Serial.print(durationPar);
-  // Serial.print(", speedPar: "); Serial.print(speedPar); 
-  // Serial.print(", buttonStates: "); for (int i = 0; i<4; i++){Serial.println(buttonStates[i]);};
+  for (int i = 0; i<4; i++){
+    buttonStates[i] = digitalRead(buttonPins[i]);
+  }
+  Serial.print("Reading States; durationPar:"); Serial.print(durationPar);
+  Serial.print(", speedPar: "); Serial.print(speedPar); 
+  Serial.print(", buttonStates: "); for (int i = 0; i<4; i++){Serial.println(buttonStates[i]);};
 }
