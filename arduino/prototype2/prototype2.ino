@@ -24,8 +24,8 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   readStates();
+  //janky way to read buttonStates for 1 and remember location of the 1
   int currentDirection = 5;
   for (int i=0; i<4 ; i++){
     if (1 == buttonStates[i]){
@@ -35,15 +35,18 @@ void loop() {
   }
   //if we found that a button is pressed
   if (currentDirection != 5){
+    Serial.print('Button pressed: '); Serial.println(currentDirection);
     analogWrite(ledPins[currentDirection],speedPar);
     while(buttonStates[currentDirection] == 1){
       readStates();
       analogWrite(ledPins[currentDirection],speedPar);
     }
+    Serial.println('Button released');
     //start timer
     startTime = millis();
     curTime = millis()- startTime;
     while(curTime<durationPar){
+      Serial.println('Button timer running!');
       readStates();
       analogWrite(ledPins[currentDirection],speedPar);
       //check if any of the other buttons have been turned on!
@@ -61,6 +64,7 @@ void loop() {
       }
       if (newDirection =! 5){
         //break the timer while loop
+        Serial.println('Button timer broken due to new button being pressed'); 
         break;
       } 
       curTime = millis() - startTime;
@@ -72,7 +76,10 @@ void loop() {
 void readStates() {
   durationPar = map(analogRead(durPotPin), 0, 1023, 0, 5000);
   speedPar = map(analogRead(speedPotPin), 0, 1023, minSpeed, maxSpeed);
-  for (int i = 0; i<=3; i++){
+  for (int i = 0; i<4; i++){
     buttonStates[i] = digitalRead(buttonPins[i]);
   }
+  Serial.print('Reading States; durationPar:'); Serial.print(durationPar);
+  Serial.print(', speedPar: '); Serial.print(speedPar); 
+  Serial.print(', buttonStates: '); for (int i = 0; i<4; i++){Serial.println(buttonStates[i]);};
 }
