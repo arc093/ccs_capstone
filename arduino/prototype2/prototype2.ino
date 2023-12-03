@@ -12,7 +12,16 @@ byte otherButtonStates[] = {0, 0, 0, 0};
 unsigned long startTime = millis ();
 unsigned long curTime = millis();
 void setup() {
+  Serial.begin(9300);
   // put your setup code here, to run once:
+  for (int i=0; i<4; i++){
+    pinMode(ledPins[i], OUTPUT);
+  }
+  for (int i=0; i<4; i++){
+    pinMode(buttonPins[i], INPUT);
+  }
+  pinMode(durPotPin, INPUT);
+  pinMode(speedPotPin, INPUT);
 }
 
 void loop() {
