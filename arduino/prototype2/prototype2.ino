@@ -24,7 +24,7 @@ void setup() {
 }
 
 void loop() {
-  readStates();
+  //readStates();
   //janky way to read buttonStates for 1 and remember location of the 1
   int currentDirection = 5;
   // for (int i=0; i<4 ; i++){
@@ -33,6 +33,7 @@ void loop() {
   //     break;
   //   }
   // }
+  buttonStates[0] = digitalRead(buttonPins[0]);
   Serial.print("buttonStates: "); Serial.print(buttonStates[0]);//for (int i = 0; i<4; i++){Serial.println(buttonStates[i]);};
   // Serial.print("currentDirection: "); Serial.println(currentDirection);
   //if we found that a button is pressed
