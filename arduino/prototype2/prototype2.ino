@@ -1,11 +1,10 @@
-
 const int maxSpeed = 225;
 const int minSpeed = 30;
 const int speedPotPin = A0;     //white wire
 const int durPotPin = A1;       //black wire
 float durationPar = 0.0;  //seconds
 float speedPar = 0.0;
-int buttonPins[] = {1,4,7,10}; //{green,yellow,blue,red}
+int buttonPins[] = {2,4,7,10}; //{green,yellow,blue,red}
 int ledPins[] = {3,6,9,11}; //{green,yellow,blue,red}
 byte buttonStates[] = {0, 0, 0, 0};
 byte otherButtonStates[] = {0, 0, 0, 0};
