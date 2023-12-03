@@ -1,4 +1,4 @@
-const int maxSpeed = 225;
+const int maxSpeed = 225; //corresponds to maximum analog output
 const int minSpeed = 30;
 const int speedPotPin = A0;     //white wire
 const int durPotPin = A1;       //black wire
