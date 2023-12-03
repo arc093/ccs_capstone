@@ -33,44 +33,46 @@ void loop() {
       break;
     }
   }
+  Serial.print("buttonStates: "); for (int i = 0; i<4; i++){Serial.println(buttonStates[i]);};
+  Serial.print("currentDirection: "); Serial.println(currentDirection);
   //if we found that a button is pressed
-  if (currentDirection != 5){
-    Serial.print('Button pressed: '); Serial.println(currentDirection);
-    analogWrite(ledPins[currentDirection],speedPar);
-    while(buttonStates[currentDirection] == 1){
-      readStates();
-      analogWrite(ledPins[currentDirection],speedPar);
-    }
-    Serial.println('Button released');
-    //start timer
-    startTime = millis();
-    curTime = millis()- startTime;
-    while(curTime<durationPar){
-      Serial.println('Button timer running!');
-      readStates();
-      analogWrite(ledPins[currentDirection],speedPar);
-      //check if any of the other buttons have been turned on!
-      int newDirection = 5;
-      //copy buttonStates while changing the current direction to zero
-      for (int i=0; i<4 ; i++){
-        otherButtonStates[i] = buttonStates[i];
-      }
-      otherButtonStates[currentDirection] = 0;
-      for (int i=0; i<4 ; i++){
-        if (1 == buttonStates[i]){
-          newDirection=i;
-          break;
-        }
-      }
-      if (newDirection =! 5){
-        //break the timer while loop
-        Serial.println('Button timer broken due to new button being pressed'); 
-        break;
-      } 
-      curTime = millis() - startTime;
-    }
-    digitalWrite(ledPins[currentDirection],LOW);
-  } 
+  // if (currentDirection != 5){
+  //   Serial.print("Button pressed: "); Serial.println(currentDirection);
+  //   analogWrite(ledPins[currentDirection],speedPar);
+  //   while(buttonStates[currentDirection] == 1){
+  //     readStates();
+  //     analogWrite(ledPins[currentDirection],speedPar);
+  //   }
+  //   Serial.println("Button released");
+  //   //start timer
+  //   startTime = millis();
+  //   curTime = millis()- startTime;
+  //   while(curTime<durationPar){
+  //     Serial.println("Button timer running!");
+  //     readStates();
+  //     analogWrite(ledPins[currentDirection],speedPar);
+  //     //check if any of the other buttons have been turned on!
+  //     int newDirection = 5;
+  //     //copy buttonStates while changing the current direction to zero
+  //     for (int i=0; i<4 ; i++){
+  //       otherButtonStates[i] = buttonStates[i];
+  //     }
+  //     otherButtonStates[currentDirection] = 0;
+  //     for (int i=0; i<4 ; i++){
+  //       if (1 == buttonStates[i]){
+  //         newDirection=i;
+  //         break;
+  //       }
+  //     }
+  //     if (newDirection =! 5){
+  //       //break the timer while loop
+  //       Serial.println("Button timer broken due to new button being pressed"); 
+  //       break;
+  //     } 
+  //     curTime = millis() - startTime;
+  //   }
+  //   digitalWrite(ledPins[currentDirection],LOW);
+  // } 
 }
 
 void readStates() {
@@ -79,7 +81,7 @@ void readStates() {
   for (int i = 0; i<4; i++){
     buttonStates[i] = digitalRead(buttonPins[i]);
   }
-  Serial.print('Reading States; durationPar:'); Serial.print(durationPar);
-  Serial.print(', speedPar: '); Serial.print(speedPar); 
-  Serial.print(', buttonStates: '); for (int i = 0; i<4; i++){Serial.println(buttonStates[i]);};
+  // Serial.print("Reading States; durationPar:"); Serial.print(durationPar);
+  // Serial.print(", speedPar: "); Serial.print(speedPar); 
+  // Serial.print(", buttonStates: "); for (int i = 0; i<4; i++){Serial.println(buttonStates[i]);};
 }
