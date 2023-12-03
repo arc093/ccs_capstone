@@ -31,6 +31,7 @@ void setup() {
   pinMode(buttonPin, INPUT);
   pinMode(durPotPin, INPUT);
   pinMode(speedPotPin, INPUT);
+  Serial.begin(9300);
 }
 
 void loop() {
