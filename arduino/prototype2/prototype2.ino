@@ -33,8 +33,8 @@ void loop() {
   //     break;
   //   }
   // }
-  Serial.print("buttonStates: "); for (int i = 0; i<4; i++){Serial.println(buttonStates[i]);};
-  Serial.print("currentDirection: "); Serial.println(currentDirection);
+  Serial.print("buttonStates: "); Serial.print(buttonStates[0]);//for (int i = 0; i<4; i++){Serial.println(buttonStates[i]);};
+  // Serial.print("currentDirection: "); Serial.println(currentDirection);
   //if we found that a button is pressed
   // if (currentDirection != 5){
   //   Serial.print("Button pressed: "); Serial.println(currentDirection);
