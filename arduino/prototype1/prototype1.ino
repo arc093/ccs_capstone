@@ -12,13 +12,16 @@
 // constants won't change. They're used here to set pin numbers:
 const int buttonPin = 2;        // the number of the pushbutton pin
 const int ledPin =  6;          // the number of the LED pin
-const int durPotPin = A5;       //orange wire
-const int speedPotPin = A0;     //red wire
+const int durPotPin = A5;       //black wire
+const int speedPotPin = A0;     //white wire
+const int maxSpeed = 225;
+const int minSpeed = 30;
 
 
 
 // variables will change:
-int buttonState = 0;         // variable for reading the pushbutton status
+byte buttonState = LOW;         // variable for reading the pushbutton status
+byte prevButtonState = LOW;
 float durationPar = 0.0;  //seconds
 float speedPar = 0.0;    //voltage applied to motor drivers where 5 is max
 unsigned long startTime = millis ();
@@ -35,24 +38,25 @@ void setup() {
 }
 
 void loop() {
-  // read the state of the pushbutton value:
   buttonState = digitalRead(buttonPin);
-  //print the pot values to get the correct range for the map function
-  Serial.print(analogRead(durPotPin));
-  //Serial.print(analogRead(speedPotPin));
-  durationPar = map(analogRead(durPotPin), 0, 1023, 0.1, 5);
-  speedPar = map(analogRead(speedPotPin), 0, 1023, 1, 5);
+  durationPar = map(analogRead(durPotPin), 0, 1023, 0, 5000);
+  speedPar = map(analogRead(speedPotPin), 0, 1023, minSpeed, maxSpeed);
 
-  // check if the user is holding the button, continuously start a new timer so when they stop holding the button the timer is released and starts counting
-  if (buttonState == HIGH) {
-      // start a new timer
-      startTime = millis();
+  if (buttonState != prevButtonState){
+    prevButtonState = buttonState;
+    if (buttonState == HIGH){
       analogWrite(ledPin,speedPar);
-      curTime = millis() - startTime;
-      // if the timer is done, turn off the LED, if its still going, keep the LED on
-      while (curTime < durationPar) {
-        // turn LED on with brightness according to speed:
+    }
+    if (buttonState == LOW){
+      startTime = millis();
+      curTime = millis()- startTime;
+      while(curTime < durationPar){
+        durationPar = map(analogRead(durPotPin), 0, 1023, 0, 5000);
+        speedPar = map(analogRead(speedPotPin), 0, 1023, minSpeed, maxSpeed);
         analogWrite(ledPin,speedPar);
+        curTime = millis() - startTime;
       }
-  } 
+      digitalWrite(ledPin,LOW);
+    }
+  }
 }
