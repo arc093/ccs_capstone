@@ -1,0 +1,79 @@
+ptButtonStates == [0 0]
+cButtonStates [0 0]
+modeButtonStates = [0 0 0]
+currentDirection == 1
+mode = 0 //0: stop, 1: roll (just pt controls), 2: go (both controls)
+ptOverride = 0 //0 only relevant in mode 2, when 0 child controls are active, when 1 pt controls are taking precidence
+
+loop
+    readState()
+    if mode == 1:
+        ptControls()
+    if mode == 2:
+        ptControls()
+        cControls()
+
+        
+
+
+func readStates
+    \\updates buttonStates and potentiometer states
+    speedPot = read()
+    buttonStates = read()
+
+
+example: 
+[0 0 0 0]
+[1 0 0 0]
+[1 1 0 0]
+[0 1 0 0]
+
+readState()
+//read stoprollgo buttons, set mode
+    if stop pressed
+        mode = 0
+    if roll button pressed
+        mode = 1 
+    if go button pressed
+        mode = 2
+    if mode = 2:
+        if one of ptButtons == HIGH
+            ptOverride = 1
+        else
+            ptOverride = 0
+
+ptButtons():
+    if one of ptButtonStates == HIGH
+        currentDirection = choose position of first high state
+        write(HIGH, pin=currentDirection)
+        while buttonState[currentDirection] == HIGH
+            write(HIGH, pin=currentDirection)
+            readStates()
+            if mode == 0
+                break
+        write(LOW, pin=currentDirection)
+
+
+cButtons():
+    if one of buttonStates == HIGH
+        currentDirection = choose position of first high state
+        write(HIGH, pin=currentDirection)
+        while buttonState[currentDirection] == HIGH
+            write(HIGH, pin=currentDirection)
+            readStates()
+            if mode == 0 or 1
+                break
+            if ptOverride = 1
+                break
+        start_timer()
+        while (curTime<durationPar)
+            readStates()
+            write(HIGH, pin=currentDirection)
+            if buttonStates[all states except for currentDirection] =! [0 0 0]
+                break while loop
+            curTime=millis()-startTime
+            if mode == 0 or 1
+                break
+            if ptOverride = 1
+                break
+        write(LOW, pin=currentDirection)
