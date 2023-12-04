@@ -5,18 +5,18 @@ const int durPotPin = A1;       //black wire
 float durationPar = 0.0;  //seconds
 float speedPar = 0.0;
 
-int ledPins[] = {3,6}; //{green,yellow}
+int ledPins[] = {9,11}; //{green, red}
 
-int cMotionButtonPins[] = {2,4}; //{green,yellow,blue,red}
+int cMotionButtonPins[] = {7,10}; //{white, white}
 byte cMotionButtonStates[] = {0, 0};
 byte copiedButtonStates[] = {0, 0}; //used for child motion button states
 
-int ptMotionButtonPins[] = {1,1};
+int ptMotionButtonPins[] = {2,4}; //{orange}
 byte ptMotionButtonStates[] = {0,0};
 
 const int numMotionButtons = 2;
 
-const int modeButtonPins[] = {1,1,1}; //stop, roll, go
+const int modeButtonPins[] = {13,12,8}; //stop, roll, go
 byte modeButtonStates[] = {0, 0, 0};
 int mode = 0; //0: stop, 1: roll (just pt controls), 2: go (both controls)
 byte ptOverride = 0; //only relevant in mode 2, when 0: child controls are active, when 1: pt controls are taking precidence

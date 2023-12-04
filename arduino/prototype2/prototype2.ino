@@ -76,6 +76,7 @@ void loop() {
     digitalWrite(ledPins[currentDirection],LOW);
   } 
 }
+}
 
 void readStates() {
   durationPar = map(analogRead(durPotPin), 0, 1023, 0, 5000);
