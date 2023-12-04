@@ -59,6 +59,7 @@ void loop() {
       otherButtonStates[currentDirection] = 0;
       for (int i=0; i<4 ; i++){
         if (1 == otherButtonStates[i]){
+        if (1 == otherButtonStates[i]){
           newDirection=i;
           break;
         }
