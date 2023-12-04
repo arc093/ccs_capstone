@@ -186,10 +186,10 @@ void readStates() {
     }
     // if we found that a button is pressed
     if (currentDirection != -1){
-      ptOverride = 0;
+      ptOverride = 1;
     }
     else{
-      ptOverride = 1;
+      ptOverride = 0;
     }
   }
   Serial.println("mode, ptOverride: "); Serial.println(mode); Serial.println(ptOverride);
