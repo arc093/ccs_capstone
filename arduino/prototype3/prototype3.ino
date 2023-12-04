@@ -71,10 +71,10 @@ void ptControls(){
   // if we found that a button is pressed
   if (currentDirection != -1){
     Serial.println("pt button pressed! currentDirection: "); Serial.println(currentDirection);
-    analogWrite(ledPins[currentDirection],speedPar);
+    analogWrite(ledPins[currentDirection],maxSpeed);
     while(ptMotionButtonStates[currentDirection] == 1){
       readStates();
-      analogWrite(ledPins[currentDirection],speedPar);
+      //analogWrite(ledPins[currentDirection],maxSpeed);
       if (mode == 0) {
         break;
       }
