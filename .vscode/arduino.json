@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:micro",
+    "programmer": "avrisp",
+    "port": "COM5",
+    "sketch": "arduino\\prototype1\\prototype1.ino"
+}
