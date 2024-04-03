@@ -2,6 +2,7 @@
     "board": "arduino:avr:mega",
     "programmer": "avrisp",
     "port": "COM5",
-    "sketch": "arduino\\prototype1\\prototype1.ino",
-    "configuration": "cpu=atmega2560"
+    "sketch": "arduino/prototype3/prototype3.ino",
+    "configuration": "cpu=atmega2560",
+    "output": "build"
 }
