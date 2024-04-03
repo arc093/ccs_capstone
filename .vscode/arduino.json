@@ -1,6 +1,7 @@
 {
-    "board": "arduino:avr:micro",
+    "board": "arduino:avr:mega",
     "programmer": "avrisp",
     "port": "COM5",
-    "sketch": "arduino\\prototype1\\prototype1.ino"
+    "sketch": "arduino\\prototype1\\prototype1.ino",
+    "configuration": "cpu=atmega2560"
 }
